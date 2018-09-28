@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title></title>
+<link type="text/css" rel="stylesheet" href="../style/PublicStyle.css?ver=3.2" />
+<link type="text/css" rel="stylesheet" href="../style/help_content.css?ver=0.1" />
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/velfun.js?ver=3.2"></script>
+<script type="text/javascript" src="../script/help.js?ver=0.1"></script>
+</head>
+<body>
+<div class="title0">開始</div>
+<div class="title1">簡介</div>
+<div class="content">
+化龍科技類庫分爲2個部分，分別是velfun.js的腳本部分和PublicStyle.css樣式部分，其中樣式部分可以單獨使用，但腳本部分內容依賴樣式，因此不能單獨使用。<br />
+在velfun中定義了包含消息框、客製滑鼠右鍵選單、Json字串到Array數列、判定屬性是否存在、虛擬鍵盤、ul模擬select、變色圖標、隨機數、格式驗證等方便使用的智慧型方法封裝<br />
+並且在持續擴充中。
+</div>
+<div class="title1">使用方法</div>
+<div class="content">
+將velfun.js和PublicStyle.css成功引入要使用的頁面（可以放至於不同目錄），爲防止緩存導致功能更新失敗，建議追加版本號。<br />
+例如：
+<pre class="code">
+&lt;script type="text/javascript" src="/script/velfun.js?ver=X.X.X"&gt;&lt;/script&gt;
+</pre>
+</div>
+<div class="title1" style="color:red;">注意</div></div>
+<div class="content">
+<ul>
+<li>velfun.js和PublicStyle.css必須同時引入，否則Msgbox等包含預定義樣式的部分將會不能正常顯示</li>
+<li>velfun.js必須放在JQ主文件之後</li>
+<li>velfun.js必須使用JQ3.x以上版本，否則部分功能不能正常運作</li>
+</ul>
+</div>
+</body>
+</html>

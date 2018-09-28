@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title></title>
+<link type="text/css" rel="stylesheet" href="../style/PublicStyle.css?ver=3.2" />
+<link type="text/css" rel="stylesheet" href="../style/help_content.css?ver=0.1" />
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/velfun.js?ver=3.2"></script>
+<script type="text/javascript" src="../script/help.js?ver=0.1"></script>
+<script type="text/javascript" >
+$(document).ready(function () {
+	var a = _.random(10,30);
+	console.log(a);
+	$("#rd").text(a);
+})
+</script>
+<style type="text/css">
+ul li{
+line-height: 30px;
+list-style-type: disc;
+transition: 300ms;
+color: black;
+cursor:pointer;
+}
+
+ul li:hover{
+color: #C10000;
+}
+
+ul a{
+text-decoration: none;
+}
+</style>
+</head>
+<body>
+<div class="title0">random 更好的隨機數</div>
+<div class="title1">簡介</div>
+<div class="content">
+JS自帶的random真的很糟糕，Math.random()只能返回0-1的隨機小數且不能限定範圍，而通常我們需要能限定範圍且返回整數，傳統方式是
+<pre class="code">Math.floor(Math.random()*(最大-最小)+最小)</pre>
+&#12288;&#12288;十分麻煩<br />
+&#12288;&#12288;現在我們有了更優秀的方式
+</div>
+<div class="title1">使用方法</div>
+<div class="content" style="text-indent: 0em;">
+用法:<br />
+<pre class="code">
+var a = velfun.random(最小值,最大值);
+var a = velfun.random(最大值);
+</pre>
+<font style="color:red;">velfun可以使用_代替，如同jquery可以使用$代替一樣</font>
+</div>
+
+<div class="title1">示例</div>
+
+<div class="content" style="text-indent: 0em;">
+代碼:
+<pre class="code">
+var a = _.random(10,30);
+console.log(a);
+</pre>
+<br />
+輸出:<label id="rd">0</label><br />
+<span>可以按<label style="color: blue; font-weight: bold;">F12</label>打開控制臺看結果</span>
+</div>
+</body>
+</html>

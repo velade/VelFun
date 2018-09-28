@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title></title>
+<link type="text/css" rel="stylesheet" href="../style/PublicStyle.css?ver=3.2" />
+<link type="text/css" rel="stylesheet" href="../style/help_content.css?ver=0.1" />
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/velfun.js?ver=3.2"></script>
+<script type="text/javascript" src="../script/help.js?ver=0.1"></script>
+<style>
+.b_n{
+	border: 1px #CCC solid;
+	padding: 5px;
+}
+.b_h{
+	background: darkred;
+	color:white;
+}
+.b_d{
+	background: orange;
+}
+.b_u{
+	background: lightblue;
+}
+</style>
+<script type="text/javascript" >
+ $(document).ready(function(){
+	$("#button1").fourStatus("b_n","b_h","b_d","b_u",500);
+ 	$("#button2").fourStatus("b_n","b_h",function(){alert('Button2被按下');},"b_u",500);
+ })
+</script>
+</head>
+<body>
+<div class="title0">fourStatus 四種狀態切換</div>
+<div class="title1">簡介</div>
+<div class="content">
+以往我們使用按下擡起懸浮的時候，一般是使用mousedown/mouseup/hover逐個定義，這在我們定義按鈕時就顯得囉嗦<br />
+因此我們現在提供了一個簡便的集成效果，靈感來源於Flash的按鈕元素。但又更加強大！
+</div>
+<div class="title1">使用方法</div>
+<div class="content">
+格式:
+<pre class="code">
+	$(<觸發元素>).fourStatus('<普通>','<懸浮>','<按下>','<擡起>',<補間>,'<目標元素>');
+</pre>
+<ul style="text-indent: 0em;">
+<li>普通：無狀態的樣式，僅限class樣式名，初始添加到元素一次</li>
+<li>懸浮：滑鼠遊標置於元素之上的樣式，僅限class樣式名</li>
+<li>按下：滑鼠按下或觸摸不放時樣式或函數，支援調用函數，函數內暫不支援this獲取元素</li>
+<li>擡起：滑鼠釋放或觸摸手指擡起的樣式，支援調用函數，函數內暫不支援this獲取元素</li>
+<li>補間：狀態切換時的動畫時長，時間越長動畫越慢，單位 毫秒，省略則無補間</li>
+<li>目標：被賦予樣式的目標，格式和jQuery選擇器一樣，省略則是觸發元素</li>
+</ul>
+</div>
+<div class="title1">示例</div>
+
+<div class="content" style="text-indent: 0em;">
+樣式:
+<pre class="code">
+	.b_n{
+		border: 1px #CCC solid;
+		padding: 5px;
+	}
+	.b_h{
+		background: darkred;
+		color:white;
+	}
+	.b_d{
+		background: orange;
+	}
+	.b_u{
+		background: lightblue;
+	}
+</pre>
+代碼:
+<pre class="code">
+	$("#button1").fourStatus("b_n","b_h","b_d","b_u",500);
+	$("#button2").fourStatus("b_n","b_h",function(){alert('Button2被按下');},"b_u",500);
+</pre>
+<br />
+<span id="button1">按鈕一</span>&#12288;<span id="button2">按鈕二</span>
+</div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title></title>
+<link type="text/css" rel="stylesheet" href="../style/PublicStyle.css?ver=3.2" />
+<link type="text/css" rel="stylesheet" href="../style/help_content.css?ver=0.1" />
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/velfun.js?ver=3.2"></script>
+<script type="text/javascript" src="../script/help.js?ver=0.1"></script>
+<script type="text/javascript" >
+$(document).ready(function () {
+
+})
+</script>
+<style type="text/css">
+ul li{
+line-height: 30px;
+list-style-type: disc;
+transition: 300ms;
+color: black;
+cursor:pointer;
+}
+
+ul li:hover{
+color: #C10000;
+}
+
+ul a{
+text-decoration: none;
+}
+</style>
+</head>
+<body>
+<div class="title0">velfun.test 格式驗證</div>
+<div class="title1">簡介</div>
+<div class="content">
+用於驗證password/cellphone/email的格式，後續將擴充更多格式
+</div>
+<div class="title1">使用方法</div>
+<div class="content" style="text-indent: 0em;">
+用法:<br />
+<pre class="code">
+var a = velfun.test.XXXX(被驗證文本);
+</pre>
+velfun可以使用_代替
+</div>
+
+<div class="title1">相關方法</div>
+<div class="content">
+<ul>
+	<a href="password.html"><li data-page='password'>password 密碼強度</li></a>
+	<a href="cellphone.html"><li data-page='cellphone'>cellphone 手機門號格式驗證</li></a>
+	<a href="email.html"><li data-page='email'>email 郵箱格式驗證</li></a>
+</ul>
+</div>
+</body>
+</html>

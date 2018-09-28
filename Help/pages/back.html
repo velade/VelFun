@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title></title>
+<link type="text/css" rel="stylesheet" href="../style/PublicStyle.css?ver=3.4.1" />
+<link type="text/css" rel="stylesheet" href="../style/help_content.css?ver=0.1" />
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/velfun.js?ver=3.4.1"></script>
+<script type="text/javascript" src="../script/help.js?ver=0.1"></script>
+<style>
+.b_n{
+	border: 1px #CCC solid;
+	padding: 5px;
+}
+</style>
+<script type="text/javascript" >
+ $(document).ready(function(){
+	 var isback=false;
+	 $("body").css("transition","300ms");
+	 $("#button1").click(function(){
+		 if(isback){
+			 $("body").unback();
+			 isback=false;
+		 }else{
+			 $("body").back(30);
+			 isback=true;
+		 }
+ 	})
+ })
+</script>
+</head>
+<body>
+<div class="title0">back 將元素置於背景</div>
+<div class="title1">簡介</div>
+<div class="content">
+事實上，這個功能只是一種預定義的樣式，而不是真的將元素的層次進行調整。（仿3D樣式）
+</div>
+<div class="title1">使用方法</div>
+<div class="content">
+格式:
+<pre class="code">
+	$(<元素>).back(<距離>);
+</pre>
+<ul style="text-indent: 0em;">
+<li>距離：向後移動的距離，數值爲正數，數值越大，距離越遠</li>
+</ul>
+</div>
+<div class="title1">示例</div>
+
+<div class="content" style="text-indent: 0em;">
+代碼:
+<pre class="code">
+	var isback=false;
+	$("body").css("transition","300ms");
+	$("#button1").click(function(){
+		if(isback){
+			$("body").unback(); //返回前端
+			isback=false;
+		}else{
+			$("body").back(30); //後置30單位
+			isback=true;
+		}
+	})
+</pre>
+<br />
+<span id="button1" class="b_n">置於背景</span>
+</div>
+</body>
+</html>

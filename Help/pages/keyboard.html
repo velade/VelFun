@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title></title>
+<link type="text/css" rel="stylesheet" href="../style/PublicStyle.css?ver=3.2" />
+<link type="text/css" rel="stylesheet" href="../style/help_content.css?ver=0.1" />
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/velfun.js?ver=3.2"></script>
+<script type="text/javascript" src="../script/help.js?ver=0.1"></script>
+<script type="text/javascript" >
+
+</script>
+</head>
+<body>
+<div class="title0">屏幕虛擬鍵盤（軟鍵盤）</div></div>
+<div class="title1">簡介</div>
+<div class="content">
+這是一個實驗中的功能，並不及作業系統自帶的屏幕鍵盤好用，因此我們只建議用於不能直接調用屏幕鍵盤的情況(例如全屏互動展示系統等)
+</div>
+<div class="title1">使用方法</div>
+<div class="content">
+在要使用軟鍵盤的文本框添加客制屬性inputbox(無中文輸入)或inputmethodbox(有中文輸入)<br />
+例如:
+<pre class="code">
+&lt;input type="text" inputbox /&gt;
+</pre>
+軟按鍵添加客制屬性keychar,屬性值為按鍵字符
+例如:
+<pre class="code">
+&lt;span keychar="a"&gt;a&lt;/span&gt;
+</pre>
+特殊按鍵須使用英文
+<ul>
+<li>backspace(退格)</li>
+<li>space(空白)</li>
+<li>clear(清空)</li>
+<li>minus(切換負數)</li>
+<li>shift(切換大小寫)</li>
+<li>zh/en(切換中英文)</li>
+</ul>
+
+此功能屬於智慧型方法，無需輸入JS代碼
+</div>
+<div class="title1">示例</div>
+
+<div class="content" style="text-indent: 0em;">
+代碼:
+<pre class="code">
+	&lt;input type="text" inputbox /&gt;
+	&lt;span keychar="a"&gt;a&lt;/span&gt;
+</pre>
+<br />
+<input type="text" inputbox>
+<span keychar="a" class="cbutton">a</span>
+<span keychar="b" class="cbutton">b</span>
+<span keychar="c" class="cbutton">c</span>
+<span keychar="d" class="cbutton">d</span>
+<span keychar="e" class="cbutton">e</span>
+<span keychar="clear" class="cbutton">清除</span>
+<span keychar="backspace" class="cbutton">退格</span>
+</div>
+</body>
+</html>
