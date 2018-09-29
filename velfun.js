@@ -744,6 +744,8 @@ velfun.info=new Object();
 	}
 })(velfun.info);
 
+var _ = velfun;
+
 /*Auto*/
 $(document).ready(function () {
 	$("ul[select]").each(function () {
