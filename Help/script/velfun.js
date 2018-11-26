@@ -1,9 +1,9 @@
 /********************
 腳本名:VelFun
-版本號:3.8.0
+版本號:3.9.2
 作　者:龍翔翎(Velade)
 
-更新日期:2018/08/30
+更新日期:2018/11/26
 ********************/
 ;(function($){
 	var msgfun=function(e){return true;};
@@ -401,22 +401,29 @@
 					nowtops=-1;
 				},delayc)
 			}
+		},
+		autoTile:function(isInlineBlock){
+			var _items = $(this);
+			/*初始化*/
+			_items.css({"margin-left":"0px","margin-right":"0px"});
+			/*END*/
+			if(isInlineBlock){
+				_items.css("float","left");
+			}
+			var parentW = $(_items.parent()).width();
+			var itemsW = _items.outerWidth(true);
+			var itemsInlineNum = parseInt(parentW / itemsW);
+			if(isInlineBlock) itemsInlineNum --;
+			var gapNum = itemsInlineNum * 2;
+			var allGap = parentW - (itemsW * itemsInlineNum);
+			var eachGapW =allGap / gapNum;
+			_items.css({"margin-left":eachGapW+"px","margin-right":eachGapW+"px"})
 		}
 	})
 	String.prototype.JsontoArray = function () {
-		var json=this.toString();
-		json=json.replace(/^\{/g,",");
-		json=json.replace(/\}$/g,"");
-		var arrayprop=new Object('Data');
-		var exp=new RegExp(/,"(.+?)":/g);
-		var e;
-		while(e=exp.exec(json)){
-			var propname=e[1];
-			var exp2=new RegExp('"'+propname+'":(.*?)(,".+?":|$)');
-			var propval=json.match(exp2);
-			arrayprop[propname]=propval[1].replace(/^"|"$/g,"");
-		}
-		return arrayprop;
+		var json = this.toString();
+		var real_json = JSON.parse(json);
+		return real_json;
 	}
 	Date.prototype.getFullMonth=function (addone) {
 		var addo = addone || false;
@@ -734,8 +741,7 @@ velfun.info=new Object();
 	}
 })(velfun.info);
 
-var _=velfun;
-
+var _ = velfun;
 
 /*Auto*/
 $(document).ready(function () {
