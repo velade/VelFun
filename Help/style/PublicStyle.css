@@ -80,7 +80,7 @@ height: 100%;
 .card_noani{
 	transition: 0ms;
 }
-.card.backface,.card_noani.backface{
+.card.backface,.card_noani.backface{/*卡牌背面樣式*/
 position: absolute;
 left: 0px;
 top: 0px;
@@ -250,4 +250,32 @@ margin-right: 2px;
 	text-align: center !important;
 	color: white !important;
 }
+/*END*/
+
+/*重定義控件樣式*/
+	/*文本框*/
+	.vinput{
+		width:250px;
+	  box-sizing: border-box;
+	  margin: 0px;
+	  border: 0px;
+	  display: inline-block;
+	  overflow: hidden;
+		height: 20px;
+	  line-height: 20px;
+	  font-size: 14px;
+	  text-align: left;
+	  padding: 0px 10px;
+	  border-radius: 3px;
+	  box-shadow: 0px 0px 2px gray;
+	  display: inline-block;
+	  transition: 300ms;
+	  border: 0px;
+	  background-color: white;
+	}
+	.vinput:focus{
+		box-shadow: 0px 0px 5px #2196f3;
+	  border:0px;
+	  outline: none;
+	}
 /*END*/
