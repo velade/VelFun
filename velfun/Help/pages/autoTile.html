@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title></title>
+<link type="text/css" rel="stylesheet" href="../style/PublicStyle.css?ver=3.4.1" />
+<link type="text/css" rel="stylesheet" href="../style/help_content.css?ver=0.1" />
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/velfun.js?ver=3.9.2"></script>
+<script type="text/javascript" src="../script/help.js?ver=0.1"></script>
+<style>
+.box, .box2{
+	display: block;
+	width: 600px;
+	height: 300px;
+	overflow: auto;
+	border: 1px solid black;
+}
+.box::-webkit-scrollbar, .box2::-webkit-scrollbar{
+	display: none;
+}
+.box > .item, .box2 > .item2{
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	border: 1px solid black;
+	margin: 10px auto;
+}
+</style>
+<script type="text/javascript" >
+ $(document).ready(function(){
+	$(".item").autoTile(true);
+ })
+</script>
+</head>
+<body>
+<div class="title0">autoTile 自動平鋪</div>
+<div class="title1">簡介</div>
+<div class="content">
+很多時候我們需要一個平鋪的布局，京東和淘寶的商品展示就是一個典型的應用。但是往往會遇到排列間距這個頭痛的問題，儘管div是可以自動換行的，但正因如此，常常出現每行最後一個不足一個元素，而導致的右邊空白一塊。對於這個問題，我們提供了解決方案：autoTile！
+</div>
+<div class="title1">使用方法</div>
+<div class="content">
+格式:
+<pre class="code">
+	$(<元素>).autoTile(<是否修正間距>);
+</pre>
+<ul style="text-indent: 0em;">
+<li>是否修正間距：這是一個用於指示元素是否有多餘的間距的參數(如inline-block)，布爾型變量，為true時通過float布局清除多餘的間距。</li>
+<li>為什麼稱inline-block的間距是多餘的？因為inline-block的間距盡管官方說這是符合標準的，但這是一個糟糕的設計，因為它不可控，在不同瀏覽器有不同的間距。也不可獲取，這意味它除了破壞布局以外，沒有任何意義，無論規則是什麼，它都該改變，可控或可獲取。否則這只是個多餘的東西，因為我們無法使用它。</li>
+</ul>
+</div>
+<div class="title1">示例</div>
+
+<div class="content" style="text-indent: 0em;">
+代碼:
+<pre class="code">
+	html:
+	&lt;div class="box"&gt;
+		&lt;div class="item"&gt;&lt;/div&gt;
+		&lt;div class="item"&gt;&lt;/div&gt;
+		&lt;div class="item"&gt;&lt;/div&gt;
+		&lt;div class="item"&gt;&lt;/div&gt;
+		&lt;div class="item"&gt;&lt;/div&gt;
+		&lt;div class="item"&gt;&lt;/div&gt;
+		&lt;div class="item"&gt;&lt;/div&gt;
+		&lt;div class="item"&gt;&lt;/div&gt;
+		&lt;div class="item"&gt;&lt;/div&gt;
+		&lt;div class="item"&gt;&lt;/div&gt;
+	&lt;/div&gt;
+
+	CSS:
+	.box{
+		display: block;
+		width: 500px;
+		height: 500px;
+		overflow: auto;
+		border: 1px solid black;
+	}
+	.box::-webkit-scrollbar{
+		display: none;
+	}
+	.box > .item{
+		display: inline-block;
+		width: 100px;
+		height: 100px;
+		border: 1px solid black;
+		margin: 10px auto;
+	}
+
+	jQuery:
+	$('.item').autoTile(true);
+</pre>
+<br />
+調用前：
+<div class="box2">
+	<div class="item2"></div>
+	<div class="item2"></div>
+	<div class="item2"></div>
+	<div class="item2"></div>
+	<div class="item2"></div>
+	<div class="item2"></div>
+	<div class="item2"></div>
+	<div class="item2"></div>
+	<div class="item2"></div>
+	<div class="item2"></div>
+</div>
+調用後：
+<div class="box">
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+</div>
+</div>
+</body>
+</html>

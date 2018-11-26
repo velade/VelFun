@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title></title>
+<link type="text/css" rel="stylesheet" href="../style/PublicStyle.css?ver=3.2" />
+<link type="text/css" rel="stylesheet" href="../style/help_content.css?ver=0.1" />
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/velfun.js?ver=3.2"></script>
+<script type="text/javascript" src="../script/help.js?ver=0.1"></script>
+<script type="text/javascript" >
+	var json='{"id":1,"username":"testname","password":"testpass"}';
+	var jsonarray=JSON.parse(json);
+	console.log(jsonarray.username);
+	console.log(jsonarray.password);
+</script>
+</head>
+<body>
+<div class="title0">JsontoArray Json字串串換到Array數列</div>
+<div class="title1">簡介</div>
+<div class="content">
+此功能廢棄，為保證向前兼容，暫時保留此方法。建議使用JSON函數操作
+</div>
+<div class="title1">JSON函數使用方法</div>
+<div class="content">
+格式:
+<pre class="code">JSON.parse(JSON字符串);</pre>
+<ul>
+<li>返回值:Object對象</li>
+<li><返回值>.<屬性名>  //返回:屬性值</li>
+</ul>
+</div>
+<div class="title1">示例</div>
+
+<div class="content" style="text-indent: 0em;">
+代碼:
+<pre class="code">
+	var json='{"id":1,"username":"testname","password":"testpass"}';
+	var jsonarray=JSON.parse(json);
+	console.log(jsonarray.username);
+	console.log(jsonarray.password);
+</pre>
+<br />
+輸出結果:
+<pre class="code">
+	1
+	testname
+	testpass
+</pre>
+<span>可以按<label style="color: blue; font-weight: bold;">F12</label>打開控制臺看結果</span>
+</div>
+</body>
+</html>

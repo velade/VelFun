@@ -1,0 +1,281 @@
+@charset "utf-8";
+
+/********************
+腳本名:PublicStyle
+版本號:3.5.5
+作　者:龍翔翎(Velade)
+
+更新日期:2018/05/03
+********************/
+
+/*公共樣式*/
+html, body {
+    min-height:100%;
+		height: auto;
+		background-color: white;
+}
+.box-3d{
+transform:perspective(1000px);
+transform-style:preserve-3d;
+position: fixed;
+width: 0%;
+height: 0%;
+z-index: 255;
+}
+.blur{
+filter:blur(5px);
+}
+.darkblur{
+filter:blur(5px) brightness(50%);
+}
+.dark{
+filter:brightness(50%);
+}
+/*END*/
+
+/*快捷按鈕*/
+.cbutton{
+padding: 5px;
+margin:5px;
+border:1px #ccc dotted;
+cursor: default;
+transition: 300ms ease-out;
+user-select: none;
+-moz-user-select: none;
+-webkit-user-select: none;
+-ms-user-select: none;
+}
+
+.cbutton:hover{
+background-color: rgba(0,0,0,0.095);
+color: #000;
+}
+.cbutton:active{
+background-color: #3E3E3E;
+color: #FFF;
+}
+.cbactive{
+background-color: #3E3E3E;
+color: #FFF;
+}
+/*END*/
+
+/*卡牌式容器*/
+.card,.card_noani{/*卡牌基礎樣式*/
+background-color: rgba(250,250,250,0.9);
+border:1px #CCC solid;
+border-radius: 2px;
+box-shadow: 1px 1px 2px 1px #CCC;
+box-sizing:border-box;
+padding:5px;
+display: block;
+transform:rotateY(0deg);
+transition: 500ms ease-in-out;
+backface-visibility: hidden;
+position: relative;
+overflow:hidden;
+width: 100%;
+height: 100%;
+}
+.card_noani{
+	transition: 0ms;
+}
+.card.backface,.card_noani.backface{/*卡牌背面樣式*/
+position: absolute;
+left: 0px;
+top: 0px;
+transform:rotateY(-180deg);
+backface-visibility: hidden;
+}
+.card.flat,.card_noani.flat{/*去除立體陰影*/
+box-shadow: none !important;
+}
+.card.nopadding,.card_noani.nopadding{/*去除邊距*/
+padding:0 !important;
+}
+.card.textcenter,.card_noani.textcenter{/*內容居中*/
+text-align: center !important;
+}
+.card .cardtitle,.card_noani .cardtitle{
+width: 100%;
+height: 30px;
+font-weight: bold;
+line-height:30px;
+box-sizing:border-box;
+padding-left: 5px;
+border-bottom:1px #DDD solid;
+text-align: left;
+}
+.card .cardcontent,.card_noani .cardcontent{
+width: calc(100% - 10px);
+height: calc(100% - 45px);
+position: absolute;
+top: 40px;
+left: 5px;
+display: block;
+}
+.card .cardtitle .icon,.card_noani .cardtitle .icon{
+width: 25px;
+height: 25px;
+line-height: 30px;
+border:none;
+}
+.card .cardtitle span,.card_noani .cardtitle span{
+float: left;
+}
+.card .cardtitle .buttonarea,.card_noani .cardtitle .buttonarea{
+float: right;
+font-weight: normal;
+cursor: default;
+}
+.card .cardcontent .buttonarea,.card_noani .cardcontent .buttonarea{
+width: 100%;
+height: 25px;
+text-align: right;
+position: absolute;
+bottom: 0px;
+right: 0px;
+}
+/*END*/
+
+/*自定义选择样式*/
+
+.uselectarea{
+overflow: hidden;
+border:1px #ccc solid;
+height: 30px;
+border-radius: 2px;
+display: inline-block;
+vertical-align: middle;
+}
+
+.uselectarea label{
+margin: 0 auto;
+width: 90%;
+display: block;
+}
+
+.uselect{
+transition: transform 120ms;
+border:1px #CCC solid;
+overflow: hidden !important;
+position: absolute !important;
+background-color: rgba(250,250,250,0.95);
+border-radius: 3px;
+padding: 0 !important;
+transform-origin:0 0 0 !important;
+transform:scale(0);
+z-index: 9999 !important;
+}
+.uselect li{
+width: 90% !important;
+height: 30px !important;
+line-height: 30px !important;
+border-bottom: 1px #CCC solid;
+transition: background 200ms;
+margin: 0 auto;
+list-style-type: none !important;
+text-align: left !important;
+float: none !important;
+user-select: none;
+-moz-user-select: none;
+-webkit-user-select: none;
+-ms-user-select: none;
+cursor: default;
+}
+.uselect li img{
+width: 16px;
+height: 16px;
+margin-right: 5px;
+margin-top: -2px;
+vertical-align: middle;
+border:none;
+}
+.uselect li:last-child{
+border:none;
+}
+.uselect li:hover{
+background: whitesmoke !important;
+}
+.uselect .icon{
+width: 12px;
+height: 12px;
+line-height: 30px;
+margin-right: 2px;
+}
+/*END*/
+
+/*浮動選項樣式*/
+._OPTIONS_{
+	position: fixed;
+	display: block;
+	width: 100%;
+	height: 100%;
+	left: 0px;
+	top: 0px;
+	margin:0px;
+	padding: 0px;
+	z-index: 1000;
+	overflow: hidden;
+}
+._OPTIONS_ li{
+	width: 80%;
+	max-width: 400px;
+	min-height: 40px;
+	position: relative;
+	height: auto;
+	display: table;
+	clear: both;
+	margin: 10px auto;
+	border: 1px black solid;
+	border-radius: 3px;
+	background-color: white;
+	overflow-x: hidden;
+	transition: 300ms linear;
+}
+._OPTIONS_ li:first-child{
+	margin-top: 20%;
+}
+._OPTIONS_ li span{
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+._OPTITLE_{
+	width: 100% !important;
+	background: transparent !important;
+	border: 0px !important;
+	border-radius: 0px !important;
+	font-size: 20px !important;
+	text-align: center !important;
+	color: white !important;
+}
+/*END*/
+
+/*重定義控件樣式*/
+	/*文本框*/
+	.vinput{
+		width:250px;
+	  box-sizing: border-box;
+	  margin: 0px;
+	  border: 0px;
+	  display: inline-block;
+	  overflow: hidden;
+		height: 20px;
+	  line-height: 20px;
+	  font-size: 14px;
+	  text-align: left;
+	  padding: 0px 10px;
+	  border-radius: 3px;
+	  box-shadow: 0px 0px 2px gray;
+	  display: inline-block;
+	  transition: 300ms;
+	  border: 0px;
+	  background-color: white;
+	}
+	.vinput:focus{
+		box-shadow: 0px 0px 5px #2196f3;
+	  border:0px;
+	  outline: none;
+	}
+/*END*/

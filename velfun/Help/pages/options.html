@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title></title>
+<link type="text/css" rel="stylesheet" href="../style/PublicStyle.css?ver=3.5.0" />
+<link type="text/css" rel="stylesheet" href="../style/help_content.css?ver=0.1" />
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/velfun.js?ver=3.5.0"></script>
+<script type="text/javascript" src="../script/help.js?ver=0.1"></script>
+<script type="text/javascript" >
+$(document).ready(function () {
+	$("#test0").click(function(){
+		$.Options({
+			"「OK，沒問題，包在我身上」":function(){
+				$("#fb").text("你「OK，沒問題，包在我身上」");
+			},
+			"「呃……恐怕不行誒」":function(){
+				$("#fb").text("你「呃……恐怕不行誒」");
+			}
+		})
+	})
+
+	$("#test1").click(function(){
+		$.Options({
+			"天依藍":function(){
+				$("#fb").text("你喜歡的顏色是「天依藍」");
+			},
+			"橙色":function(){
+				$("#fb").text("你喜歡的顏色是「橙色」");
+			},
+			"白色":function(){
+				$("#fb").text("你喜歡的顏色是「白色」");
+			},
+			"取消":function(){
+				$("#fb").text("你取消了選項");
+			}
+		},"哪一個是你喜歡的顏色")
+	})
+})
+</script>
+</head>
+<body>
+<div class="title0">Options 選項顯示</div>
+<div class="title1">簡介</div>
+<div class="content">
+感覺下拉列表的方式很Low？小按鈕觸屏點擊有夠麻煩？<br />
+現在全屏顯示自定義的選項，適用於觸屏，炫酷的動畫來了！
+</div>
+<div class="title1">使用方法</div>
+<div class="content">
+格式:
+<pre class="code">
+$.Options({
+	<選項一>:<函數一>,
+	<選項二>:<函數二>
+	[,....]
+},<標題/問題>);
+</pre>
+<ul>
+<li>至少有一個選項</li>
+<li>標題可選，樣式自適應</li>
+</ul>
+</div>
+<div class="title1">示例</div>
+代碼:
+<pre class="code">
+	//無標題選項
+	$.Options({
+		"「OK，沒問題，包在我身上」":function(){
+			$("#fb").text("你「OK，沒問題，包在我身上」");
+		},
+		"「呃……恐怕不行誒」":function(){
+			$("#fb").text("你「呃……恐怕不行誒」");
+		}
+	})
+
+	//有標題選項
+	$.Options({
+		"天依藍":function(){
+			$("#fb").text("你喜歡的顏色是「天依藍」");
+		},
+		"橙色":function(){
+			$("#fb").text("你喜歡的顏色是「橙色」");
+		},
+		"白色":function(){
+			$("#fb").text("你喜歡的顏色是「白色」");
+		},
+		"取消":function(){
+			$("#fb").text("你取消了選項");
+		}
+	},"哪一個是你喜歡的顏色")
+</pre>
+<br />
+<div class="content" style="text-indent: 0em;">
+<span id="test0" class="cbutton">點擊彈出無標題選項</span><br /><br />
+<span id="test1" class="cbutton">點擊彈出有標題選項</span><br /><br />
+選擇結果：<span id="fb"></span>
+</div>
+</body>
+</html>

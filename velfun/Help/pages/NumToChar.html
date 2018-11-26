@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title></title>
+<link type="text/css" rel="stylesheet" href="../style/PublicStyle.css?ver=3.5.5" />
+<link type="text/css" rel="stylesheet" href="../style/help_content.css?ver=0.1" />
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/velfun.js?ver=3.8.0"></script>
+<script type="text/javascript" src="../script/help.js?ver=0.1"></script>
+<style type="text/css">
+#getfull td{
+border:1px solid #555;
+}
+</style>
+<script>
+$(document).ready(function(){
+	$("#trans").click(function(){
+		var upperCase = ($("#upperCase").is(":checked"))?true:false;
+		var num = $("#num").val();
+		var Char = _.trans.NumToChar(num,upperCase);
+		$("#output").text(Char);
+	})
+})
+</script>
+</head>
+<body>
+<div class="title0">数值转中文</div>
+<div class="title1">簡介</div>
+<div class="content">
+	NumToChar屬於velfun.trans下的方法，提供了將數字轉換爲中文書寫方式並且提供金融使用的大寫選項。
+	<ul>
+	<li>目前僅支援到<strong>千億位</strong>，超過千億位則會得到錯誤的轉換結果。</li>
+	<li>目前僅支援整數轉換，不支援小數，後續將添加小數支援，請關注更新推送。</li>
+	</ul>
+</div>
+<div class="title1">使用方法</div>
+<div class="content" style="text-indent: 0em;">
+用法:<br />
+<pre class="code">
+var a = velfun.trans.NumToChar(數字文本[,是否大寫]);
+</pre>
+<font style="color:red;">velfun可以使用_代替，如同jquery可以使用$代替一樣</font>
+<ul>
+<li>數字文本:純數字的字符串，不要直接傳數字類型。不要帶「,」等帶格式的數字</li>
+<li>是否大寫:可選項，默認爲false，返回普通漢字（一二三），傳true則返回大寫漢字（壹贰叁）返回漢字均爲<strong>簡體中文</strong></li>
+</ul>
+<div class="title1">示例</div>
+<br />
+<div class="content" style="text-indent: 0em;">
+	代碼:
+	<pre class="code">
+		$("#trans").click(function(){
+			var upperCase = ($("#upperCase").is(":checked"))?true:false;
+			var num = $("#num").val();
+			var Char = _.trans.NumToChar(num,upperCase);
+			$("#output").text(Char);
+		})
+	</pre>
+	<input type="number" id="num" /><label><input type="checkbox" id="upperCase" value="true">大寫</label>
+	<input type="button" id="trans" value="轉換">
+	<div id="output"></div>
+</div>
+</div>
+</body>
+</html>

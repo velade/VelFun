@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title></title>
+<link type="text/css" rel="stylesheet" href="../style/PublicStyle.css?ver=3.5.5" />
+<link type="text/css" rel="stylesheet" href="../style/help_content.css?ver=0.1" />
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/velfun.js?ver=3.8.0"></script>
+<script type="text/javascript" src="../script/help.js?ver=0.1"></script>
+<style type="text/css">
+#getfull td{
+border:1px solid #555;
+}
+</style>
+<script>
+$(document).ready(function(){
+	var clientType = _.info.isMobile()?'移動端':'PC端';
+	$("#output").text("你正在使用" + clientType + "系統");
+})
+</script>
+</head>
+<body>
+<div class="title0">是否是移動端系統</div>
+<div class="title1">簡介</div>
+<div class="content">
+	isMobile屬於velfun.info下的方法，用於判斷是否是移動端，與<a href="mobileType.html">mobileType</a>相似，但只返回true或false，不返回具體的系統類型。
+</div>
+<div class="title1">使用方法</div>
+<div class="content" style="text-indent: 0em;">
+用法:<br />
+<pre class="code">
+var a = velfun.info.isMobile();
+</pre>
+<font style="color:red;">velfun可以使用_代替，如同jquery可以使用$代替一樣</font>
+<ul>
+<li>a:布爾型，在移動端被調用返回true</li>
+</ul>
+</div>
+<div class="title1">示例</div>
+
+<div class="content" style="text-indent: 0em;">
+代碼:
+<pre class="code">
+	var clientType = _.info.isMobile()?'移動端':'PC端';
+	$("#output").text("你正在使用" + clientType + "系統");
+</pre>
+<br />
+<div id="output"></div>
+</div>
+</body>
+</html>

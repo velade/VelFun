@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title></title>
+<link type="text/css" rel="stylesheet" href="../style/PublicStyle.css?ver=3.2" />
+<link type="text/css" rel="stylesheet" href="../style/help_content.css?ver=0.1" />
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/velfun.js?ver=3.2"></script>
+<script type="text/javascript" src="../script/help.js?ver=0.1"></script>
+<script type="text/javascript" >
+
+</script>
+<style type="text/css">
+ul li{
+line-height: 30px;
+list-style-type: disc;
+transition: 300ms;
+color: black;
+cursor:pointer;
+}
+
+ul li:hover{
+color: #C10000;
+}
+
+ul a{
+text-decoration: none;
+}
+</style>
+</head>
+<body>
+<div class="title0">liselect 獲取或設定選擇項</div>
+<div class="title1">簡介</div>
+<div class="content">
+因爲是select的模擬方式,ul不存在value屬性，所以不能使用val()選擇必須使用liselect進行獲取和選擇
+</div>
+<div class="title1">使用方法</div>
+<div class="content" style="text-indent: 0em;">
+獲取:（ 類似$(select).val(); ）<br />
+<pre class="code">
+$(ul元素).liselect();
+</pre>
+選擇:（ 類似$(select).val('value'); ）<br />
+<pre class="code">
+$(ul元素).liselect('選項值');
+</pre>
+
+</div>
+
+<div class="title1">相關方法</div>
+<div class="content">
+<ul>
+	<a href="Select.html"><li data-page='Select'>ul模擬select</li></a>
+	<a href="lidisable.html"><li data-page='lidisable'>lidisable 設定是否禁用</li></a>
+	<a href="lihide.html"><li data-page='lihide'>lihide 設定是否隱藏</li></a>
+</ul>
+</div>
+
+</body>
+</html>

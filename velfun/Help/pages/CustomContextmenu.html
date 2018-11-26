@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>velfun.js&PublicStyle.css幫助文檔 - Ver 3.2</title>
+<link type="text/css" rel="stylesheet" href="../style/PublicStyle.css?ver=3.2" />
+<link type="text/css" rel="stylesheet" href="../style/help_content.css?ver=0.1" />
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/velfun.js?ver=3.2"></script>
+<script type="text/javascript" src="../script/help.js?ver=0.1"></script>
+<script type="text/javascript" >
+$(document).ready(function () {
+	$("#test0").CustomContextmenu({
+		'A選項':function () {
+			$.Msgbox('選擇了A選項','結果');
+		},
+		'B選項':function () {
+			$.Msgbox('選擇了B選項','結果');
+		},
+		'C選項':function () {
+			$.Msgbox('選擇了C選項','結果');
+		}
+	})
+})
+</script>
+</head>
+<body>
+<div class="title0">CustomContextmenu 客製滑鼠右鍵選單</div>
+<div class="title1">簡介</div>
+<div class="content">
+客製滑鼠右鍵選單是爲部分需要自定義右鍵選單而設計的功能，<label style="color: red;">定義後將禁用document所有元素默認的右鍵事件。</label>
+</div>
+<div class="title1">使用方法</div>
+<div class="content">
+格式:
+<pre class="code">$(<元素>).CustomContextmenu({"[icon(<圖標路徑>)]Title":<函數>[,…]});</pre>
+<ul>
+<li>icon(<圖標路徑>)為顯示在選單前的圖標，路徑無須加引號，可以省略</li>
+<li>Title爲選單選項，必須具有</li>
+<li>函數是點擊後執行的動作</li>
+</ul>
+</div>
+<div class="title1">示例</div>
+
+<div class="content" style="text-indent: 0em;">
+代碼:
+<pre class="code">
+	$("#test0").CustomContextmenu({
+		'A選項':function () {
+			$.Msgbox('選擇了A選項','結果');
+		},
+		'B選項':function () {
+			$.Msgbox('選擇了B選項','結果');
+		},
+		'C選項':function () {
+			$.Msgbox('選擇了C選項','結果');
+		}
+	})
+</pre>
+<br />
+<span id="test0" style="border:1px solid black;padding: 5px;background:lightgray;">右鍵彈出選單</span>
+</div>
+</body>
+</html>

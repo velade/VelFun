@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title></title>
+<link type="text/css" rel="stylesheet" href="../style/PublicStyle.css?ver=3.2" />
+<link type="text/css" rel="stylesheet" href="../style/help_content.css?ver=0.1" />
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/velfun.js?ver=3.2"></script>
+<script type="text/javascript" src="../script/help.js?ver=0.1"></script>
+<script type="text/javascript" >
+</script>
+<style type="text/css">
+ul li{
+line-height: 30px;
+list-style-type: disc;
+transition: 300ms;
+color: black;
+cursor:pointer;
+}
+
+ul li:hover{
+color: #C10000;
+}
+
+ul a{
+text-decoration: none;
+}
+</style>
+</head>
+<body>
+<div class="title0">UL模擬SELECT</div>
+<div class="title1">簡介</div>
+<div class="content">
+自帶的select控件在我們看來一直是一個被忽略的BUG，它存在太多的缺陷，例如readonly無效（有人說可以disbaled但是這樣提交表單是不會提交它的），樣式不能變更，下拉箭頭樣式不統一，選項間距太小等。因此很多人選擇模擬方式，但每一個都重寫費時費力。<br />
+現在我們解決了這個問題，我們使用更加方便的方式幫助你用ul模擬select
+</div>
+<div class="title1">使用方法</div>
+<div class="content">
+在要ul添加客制屬性select即可<br />
+例如:
+<pre class="code">
+&lt;ul name="名字" style="樣式" select&gt;
+	&lt;li value="值" selected&gt;顯示名&lt;/li&gt;
+	&lt;li value="值" &gt;顯示名&lt;/li&gt;
+	&lt;li value="值" &gt;顯示名&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+我們盡可能貼近select的選項定義方式，但並未包含默認樣式，因此ul的樣式定義是必須的<br />
+此功能屬於智慧型方法，無需輸入JS代碼<br /><br />
+</div>
+
+<div class="title1">相關方法</div>
+<div class="content">
+<ul>
+	<a href="liselect.html"><li data-page='liselect'>liselect 獲取或設定選擇項</li></a>
+	<a href="lidisable.html"><li data-page='lidisable'>lidisable 設定是否禁用</li></a>
+	<a href="lihide.html"><li data-page='lihide'>lihide 設定是否隱藏</li></a>
+</ul>
+</div>
+
+<div class="title1">示例</div>
+
+<div class="content" style="text-indent: 0em;">
+代碼:
+<pre class="code">
+&lt;ul name="s1" select style="width:200px; height:30px;"&gt;
+	&lt;li value="0" selected&gt;選項0&lt;/li&gt;
+	&lt;li value="1" &gt;選項1&lt;/li&gt;
+	&lt;li value="2" &gt;選項2&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<br />
+<ul name="s1" style="width:200px; height:30px;" select>
+	<li value="0" selected>選項0</li>
+	<li value="1" >選項1</li>
+	<li value="2" >選項2</li>
+</ul>
+</div>
+</body>
+</html>
