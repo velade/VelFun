@@ -1,21 +1,31 @@
 /********************
 腳本名:VelFun
-版本號:3.9.2
+版本號:3.12.0
 作　者:龍翔翎(Velade)
 
-更新日期:2018/11/26
+更新日期:2019/06/18
 ********************/
+var velfun = new Object();
+velfun.nowinputbox = null;
+velfun.vel_Toast = new Object();
 ;(function($){
 	var msgfun=function(e){return true;};
-	var nowfocus=null;
 	var openall=false;
 	var isimethod=false;
 	var vel_hasmenu=false;
 	var vel_menufuns=new Object();
 	var vel_hasback=0;
+	var vel_MsgboxList = new Array();
 
 	$.extend({
-		Msgbox:function (Message,Title,Type,Position,callback) {
+		Msgbox:function(Message,Title,Type,Position,callback){
+			vel_MsgboxList.push(function(){$.Msgbox_do(Message,Title,Type,Position,callback)});
+			if($("#_MessageBox_").length == 0){
+				var fun = vel_MsgboxList.shift();
+				fun();
+			}
+		},
+		Msgbox_do:function (Message,Title,Type,Position,callback) {
 			var msg=Message || "";
 			var title=Title || "";
 			var ty=Type || function(e){return true;};
@@ -33,6 +43,7 @@
 				msgfun=pos;
 				pos=['calc(50% - 225px)','30%'];
 			}
+
 
 			var pwidth=$("html").width();
 			if(pwidth*0.8<450){
@@ -70,10 +81,21 @@
 			$("body").unback();
 			setTimeout(function () {
 				$("#_MessageBox_").remove();
+				if(vel_MsgboxList.length > 0){
+					var fun = vel_MsgboxList.shift();
+					fun();
+				}
 			},300)
 			msgfun(re);
 		},
 		Msgbox_lite:function(Message,Title,Type,Position,callback){
+			vel_MsgboxList.push(function(){$.Msgbox_lite_do(Message,Title,Type,Position,callback)});
+			if($("#_MessageBox_").length == 0){
+				var fun = vel_MsgboxList.shift();
+				fun();
+			}
+		},
+		Msgbox_lite_do:function(Message,Title,Type,Position,callback){
 			var msg=Message || "";
 			var title=Title || "";
 			var ty=Type || function(e){return true;};
@@ -404,26 +426,39 @@
 		},
 		autoTile:function(isInlineBlock){
 			var _items = $(this);
-			/*初始化*/
-			_items.css({"margin-left":"0px","margin-right":"0px"});
-			/*END*/
 			if(isInlineBlock){
 				_items.css("float","left");
 			}
 			var parentW = $(_items.parent()).width();
+			//console.info("parentW = " + parentW);
 			var itemsW = _items.outerWidth(true);
+			//console.info("itemsW = " + itemsW);
 			var itemsInlineNum = parseInt(parentW / itemsW);
 			if(isInlineBlock) itemsInlineNum --;
+			//console.info("itemsInlineNum = " + itemsInlineNum);
 			var gapNum = itemsInlineNum * 2;
+			//console.info("gapNum = " + gapNum);
 			var allGap = parentW - (itemsW * itemsInlineNum);
+			//console.info("allGap = " + allGap);
 			var eachGapW =allGap / gapNum;
+			//console.info("eachGapW = " + eachGapW);
 			_items.css({"margin-left":eachGapW+"px","margin-right":eachGapW+"px"})
 		}
 	})
 	String.prototype.JsontoArray = function () {
-		var json = this.toString();
-		var real_json = JSON.parse(json);
-		return real_json;
+		var json=this.toString();
+		json=json.replace(/^\{/g,",");
+		json=json.replace(/\}$/g,"");
+		var arrayprop=new Object('Data');
+		var exp=new RegExp(/,"(.+?)":/g);
+		var e;
+		while(e=exp.exec(json)){
+			var propname=e[1];
+			var exp2=new RegExp('"'+propname+'":(.*?)(,".+?":|$)');
+			var propval=json.match(exp2);
+			arrayprop[propname]=propval[1].replace(/^"|"$/g,"");
+		}
+		return arrayprop;
 	}
 	Date.prototype.getFullMonth=function (addone) {
 		var addo = addone || false;
@@ -481,34 +516,43 @@
 			vel_hasmenu=false;
 		}
 	})
+	$(document).on("mousedown touchstart","[keychar]",function (e) {
+		e.preventDefault();
+	})
+
 	$(document).on("click","[keychar]",function () {
-		if($(nowfocus).hasAttr('readonly') || $(nowfocus).hasAttr('disable')){
+		if($(velfun.nowinputbox).hasAttr('readonly') || $(velfun.nowinputbox).hasAttr('disable')){
 			return false;
 		}
-		nowfocus.focus();
 		var keychar=$(this).attr('keychar');
-		var pos=nowfocus.selectionStart;
+		var pos=velfun.nowinputbox.selectionStart;
 		if (keychar=="clear") {
-			nowfocus.value="";
-			nowfocus.selectionStart=0;
-			nowfocus.selectionEnd=0;
+			velfun.nowinputbox.value="";
+			velfun.nowinputbox.selectionStart=0;
+			velfun.nowinputbox.selectionEnd=0;
 		}else if (keychar=="backspace") {
+			if(velfun.nowinputbox.selectionStart != velfun.nowinputbox.selectionEnd){
+				velfun.nowinputbox.value=velfun.nowinputbox.value.substr(0,velfun.nowinputbox.selectionStart)+velfun.nowinputbox.value.substr(velfun.nowinputbox.selectionEnd,velfun.nowinputbox.value.length);
+				velfun.nowinputbox.selectionStart=pos;
+				velfun.nowinputbox.selectionEnd=pos;
+				return false;
+			}
 			if (isimethod && ($("#keys").text()!="" || $("#keys").val()!="")) {
 				$("#keys").val($("#keys").val().substr(0,$("#keys").val().length-1));
 				$("#keys").text($("#keys").text().substr(0,$("#keys").text().length-1));
 			}else {
-				nowfocus.value=nowfocus.value.substr(0,pos-1)+nowfocus.value.substr(pos,nowfocus.value.length);
-				nowfocus.selectionStart=pos-1;
-				nowfocus.selectionEnd=pos-1;
+				velfun.nowinputbox.value=velfun.nowinputbox.value.substr(0,pos-1)+velfun.nowinputbox.value.substr(pos,velfun.nowinputbox.value.length);
+				velfun.nowinputbox.selectionStart=pos-1;
+				velfun.nowinputbox.selectionEnd=pos-1;
 			}
 		}else if (keychar=="minus") {
-			if (nowfocus.value.indexOf("-")==-1) {
-				nowfocus.value="-"+nowfocus.value;
+			if (velfun.nowinputbox.value.indexOf("-")==-1) {
+				velfun.nowinputbox.value="-"+velfun.nowinputbox.value;
 			}else {
-				nowfocus.value=nowfocus.value.substr(1,nowfocus.value.length);
+				velfun.nowinputbox.value=velfun.nowinputbox.value.substr(1,velfun.nowinputbox.value.length);
 			}
-			nowfocus.selectionStart=nowfocus.value.length;
-			nowfocus.selectionEnd=nowfocus.value.length;
+			velfun.nowinputbox.selectionStart=velfun.nowinputbox.value.length;
+			velfun.nowinputbox.selectionEnd=velfun.nowinputbox.value.length;
 		}else if (keychar=="shift"){
 			if ($(this).hasClass('shiftON')) {
 				$(this).removeClass('shiftON');
@@ -548,31 +592,31 @@
 			if (isimethod && $(".on").hasClass('zh') && !$(".shiftON").html()!='' && ($("#keys").text()!="" || $("#keys").val()!="")){
 				$(".wordsli").eq(0).click();
 			}else {
-				nowfocus.value=nowfocus.value.substr(0,pos)+" "+nowfocus.value.substr(pos,nowfocus.value.length);
-				nowfocus.selectionStart=pos+keychar.length;
-				nowfocus.selectionEnd=pos+keychar.length;
+				velfun.nowinputbox.value=velfun.nowinputbox.value.substr(0,velfun.nowinputbox.selectionStart)+" "+velfun.nowinputbox.value.substr(velfun.nowinputbox.selectionEnd,velfun.nowinputbox.value.length);
+				velfun.nowinputbox.selectionStart=pos+keychar.length;
+				velfun.nowinputbox.selectionEnd=pos+keychar.length;
 			}
 		}else {
 			if (isimethod && $(".on").hasClass('zh') && !$(".shiftON").html()!='') {
 				$("#keys").val($("#keys").val()+keychar);
 				$("#keys").text($("#keys").text()+keychar);
 			}else {
-				nowfocus.value=nowfocus.value.substr(0,pos)+keychar+nowfocus.value.substr(pos,nowfocus.value.length);
-				nowfocus.selectionStart=pos+keychar.length;
-				nowfocus.selectionEnd=pos+keychar.length;
+				velfun.nowinputbox.value=velfun.nowinputbox.value.substr(0,velfun.nowinputbox.selectionStart)+keychar+velfun.nowinputbox.value.substr(velfun.nowinputbox.selectionEnd,velfun.nowinputbox.value.length);
+				velfun.nowinputbox.selectionStart=pos+keychar.length;
+				velfun.nowinputbox.selectionEnd=pos+keychar.length;
 			}
 		}
-		$(nowfocus).change();
+		$(velfun.nowinputbox).change();
 		if (isimethod) {
 			$("#keys").change();
 		}
 	})
 	$(document).on("focus","input[inputbox]",function () {
-		nowfocus=this;
+		velfun.nowinputbox=this;
 		isimethod=false;
 	})
 	$(document).on("focus","input[inputmethodbox]",function () {
-		nowfocus=this;
+		velfun.nowinputbox=this;
 		isimethod=true;
 	})
 	$(document).on("change","#keys",function () {
@@ -580,11 +624,13 @@
 			$("#words").html(data);
 		})
 	})
+	$(document).on("mousedown touchstart",".wordsli",function (e) {
+		e.preventDefault();
+	})
 	$(document).on("click",".wordsli",function () {
-		nowfocus.focus();
 		var keychar=$(this).text();
-		var pos=nowfocus.selectionStart;
-		nowfocus.value=nowfocus.value.substr(0,pos)+keychar+nowfocus.value.substr(pos,nowfocus.value.length);
+		var pos=velfun.nowinputbox.selectionStart;
+		velfun.nowinputbox.value=velfun.nowinputbox.value.substr(0,pos)+keychar+velfun.nowinputbox.value.substr(pos,velfun.nowinputbox.value.length);
 		$("#keys").val('');
 		$("#keys").html('');
 		$("#keys").change();
@@ -604,15 +650,14 @@
 	})
 })(jQuery);
 
-var velfun=new Object();
 (function (V) {
 	V.random=function (min,max) {
 		var vel_minval,vel_maxval,vel_randomval;
-		if (min&max) {
+		if (typeof min == 'number' & typeof max == 'number') {
 			vel_minval=min;
 			vel_maxval=max-min;
 			vel_randomval=Math.floor(Math.random()*vel_maxval+vel_minval);
-		}else if (min&!max) {
+		}else if (typeof min == 'number' & typeof max != 'number') {
 			vel_minval=0;
 			vel_maxval=min;
 			vel_randomval=Math.floor(Math.random()*vel_maxval);
@@ -644,14 +689,6 @@ velfun.test=new Object();
 		vel_safe+=(vel_t4>=15)?12.5:0;
 		vel_safe+=(!vel_t5&&vel_t2)?12.5:0;
 		vel_safe+=(!vel_t6&&(vel_t0||vel_t1))?12.5:0;
-
-		console.log(vel_t0);
-		console.log(vel_t1);
-		console.log(vel_t2);
-		console.log(vel_t3);
-		console.log(vel_t4);
-		console.log(vel_t5);
-		console.log(vel_t6);
 
 		return vel_safe;
 	};
@@ -741,7 +778,114 @@ velfun.info=new Object();
 	}
 })(velfun.info);
 
+velfun.msg=new Object();
+(function(MSG,$){
+	MSG.Msgbox = function(Message,Title,Type,Position,callback){
+		$.Msgbox(Message,Title,Type,Position,callback);
+	}
+
+	MSG.Toast = new Object();
+	MSG.Toast.LENGTH_SHORT = 2000;
+	MSG.Toast.LENGTH_LONG = 3500;
+	MSG.Toast.Position = new Object();
+	MSG.Toast.Position.CENTER = [0,0];
+	MSG.Toast.Position.CENTER_BOTTOM = [0,0.9];
+	MSG.Toast.Position.CENTER_TOP = [0,-0.9];
+	MSG.Toast.Position.CENTER_LEFT = [-0.9,0];
+	MSG.Toast.Position.CENTER_RIGHT = [0.9,0];
+	MSG.Toast.Position.LEFT_TOP = [-0.9,-0.9];
+	MSG.Toast.Position.RIGHT_TOP = [0.9,-0.9];
+	MSG.Toast.Position.LEFT_BOTTOM = [-0.9,0.9];
+	MSG.Toast.Position.RIGHT_BOTTOM = [0.9,0.9];
+
+	velfun.vel_Toast.position = MSG.Toast.Position.CENTER_BOTTOM;
+	velfun.vel_Toast.context = 'document';
+	velfun.vel_Toast.text = '';
+	velfun.vel_Toast.duration = MSG.Toast.LENGTH_SHORT;
+	velfun.vel_Toast.theme = 'light';
+	velfun.vel_Toast.timeoutFunc1 = null;
+	velfun.vel_Toast.timeoutFunc2 = null;
+
+	MSG.Toast.setContext = function(context){
+		velfun.vel_Toast.context = context;
+	}
+	MSG.Toast.setText = function(text){
+		velfun.vel_Toast.text = text;
+	}
+	MSG.Toast.setDuration = function(duration){
+		velfun.vel_Toast.duration = duration;
+	}
+	MSG.Toast.setPosition = function(position){
+		velfun.vel_Toast.position = position;
+	}
+	MSG.Toast.setTheme = function(theme){
+		velfun.vel_Toast.theme = theme;
+	}
+	MSG.Toast.makeText = function(context,text,duration){
+		MSG.Toast.setContext(context);
+		MSG.Toast.setText(text);
+		MSG.Toast.setDuration(duration);
+	}
+	MSG.Toast.setStyle = function(style){
+		velfun.vel_Toast.style = style;
+	}
+	MSG.Toast.show = function(context,text,duration,position,style){
+		if(velfun.vel_Toast.timeoutFunc1 != null){
+			clearTimeout(velfun.vel_Toast.timeoutFunc1);
+			velfun.vel_Toast.timeoutFunc1 = null;
+		}
+		if(velfun.vel_Toast.timeoutFunc2 != null){
+			clearTimeout(velfun.vel_Toast.timeoutFunc2);
+			velfun.vel_Toast.timeoutFunc2 = null;
+		}
+
+		if(context != null){
+			MSG.Toast.setContext(context);
+		}
+		if(text != null){
+			MSG.Toast.setText(text);
+		}
+		if(duration != null){
+			MSG.Toast.setDuration(duration);
+		}
+		if(position != null){
+			MSG.Toast.setPosition(position);
+		}
+		if(style != null){
+			MSG.Toast.setStyle(style);
+		}
+		$(velfun.vel_Toast.context).append("<div class='_vel_toast " + velfun.vel_Toast.theme + "' style='top: -1000px;left: -1000px;" + velfun.vel_Toast.style + "'>" + velfun.vel_Toast.text + "</div>");
+
+		var real_x = 0;
+		var real_y = 0;
+		var context_w = document.body.clientWidth;
+		var context_h = document.body.clientHeight;
+		var toast_w = $("._vel_toast")[0].offsetWidth;
+		var toast_h = $("._vel_toast")[0].offsetHeight;
+		real_x = (context_w / 2 + context_w / 2 * velfun.vel_Toast.position[0]) - (toast_w / 2);
+		if(real_x + toast_w > context_w){
+			real_x = context_w - toast_w;
+		}else if(real_x - toast_w < 0){
+			real_x = 0;
+		}
+		real_y = (context_h / 2 + context_h / 2 * velfun.vel_Toast.position[1]) - (toast_h / 2);
+		if(real_y + toast_h > context_h){
+			real_y = context_h - toast_h;
+		}else if(real_y - toast_h < 0){
+			real_y = 0;
+		}
+		$("._vel_toast").css({"top":real_y,"left":real_x});
+		velfun.vel_Toast.timeoutFunc1 = setTimeout(function(){
+			$("._vel_toast").fadeOut(500);
+			velfun.vel_Toast.timeoutFunc2 = setTimeout(function(){
+				$("._vel_toast").remove();
+			},500);
+		},velfun.vel_Toast.duration);
+	}
+})(velfun.msg,jQuery);
+
 var _ = velfun;
+var Toast = velfun.msg.Toast;
 
 /*Auto*/
 $(document).ready(function () {

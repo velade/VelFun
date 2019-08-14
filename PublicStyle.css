@@ -2,10 +2,10 @@
 
 /********************
 腳本名:PublicStyle
-版本號:3.5.5
+版本號:3.12.0
 作　者:龍翔翎(Velade)
 
-更新日期:2018/05/03
+更新日期:2019/06/18
 ********************/
 
 /*公共樣式*/
@@ -251,6 +251,25 @@ margin-right: 2px;
 	color: white !important;
 }
 /*END*/
+
+/* Toast */
+._vel_toast {
+	display: block;
+	position: fixed;
+	padding: 10px 20px;
+	border-radius: 100px;
+	box-shadow: 0px 0px 3px gray;
+	z-index: 999999;
+}
+._vel_toast.light {
+	color: black;
+	background-color: rgba(240,240,240,0.9);
+}
+
+._vel_toast.dark {
+	color: white;
+	background-color: rgba(50,50,50,0.9);
+}
 
 /*重定義控件樣式*/
 	/*文本框*/

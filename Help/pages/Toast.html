@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title></title>
+<link type="text/css" rel="stylesheet" href="../style/PublicStyle.css?ver=3.12.0" />
+<link type="text/css" rel="stylesheet" href="../style/help_content.css?ver=0.1" />
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/velfun.js?ver=3.12.0"></script>
+<script type="text/javascript" src="../script/help.js?ver=0.1"></script>
+<script type="text/javascript" >
+	$(document).ready(function(){
+		$("#showLToast").click(function(){
+			Toast.setTheme('light');
+			Toast.setPosition(Toast.Position.CENTER);
+			Toast.makeText("body","測試Toast提示框",Toast.LENGTH_SHORT);
+			Toast.show();
+		})
+		$("#showDToast").click(function(){
+			Toast.setTheme('dark');
+			Toast.setPosition(Toast.Position.CENTER);
+			Toast.makeText("body","測試Toast提示框",Toast.LENGTH_SHORT);
+			Toast.show();
+		})
+	})
+</script>
+</head>
+<body>
+<div class="title0">Toast提示框</div>
+<div class="title1">簡介</div>
+<div class="content">
+是否想過手機上的Toast提示框其實很多時候是一個非常好的概念？當我們需要給出提示，卻不希望打斷用戶操作的時候，這種能夠不操作就自動在幾秒後隱藏的小巧的提示框就體現了它的價值<br />
+現在化龍科技的VelFun提供了這個小傢伙。如果你有接觸過Android的Toast，那麼完全不用擔心你不會使用它，因為它的設計與Android上的Toast非常相似，甚至更加好用！<br />
+注：因框架頁會導致不同框架間隔離，使得座標很難正確獲取，因此暫時不建議在框架中使用。包括iframe。
+</div>
+<div class="title1">使用方法</div>
+<div class="content">
+與Android類似的設計，你可以用一些方法自定義這個提示框<br />
+Tosat屬於 velfun.msg，因此所有方法都存在於這一項下。但是為了方便使用，省略velfun.msg也可以喔
+</div>
+
+<div class="title1">setContext 父級定義方法</div>
+<div class="content">
+使用Toast.setContext("&lt;選擇器&gt;");可以定義父級，如果想要彈出全局提示框，則用"body"即可喔。<br />
+父級只影響遮蓋和隱藏，提示框的位置依然以網頁可見區域（窗口）定位。
+</div>
+<div class="title1">setText 內容定義方法</div>
+<div class="content">
+使用Toast.setText("&lt;內容&gt;");可以定義要顯示的內容，內容支援HTML代碼。
+</div>
+<div class="title1">setDuration 顯示時間定義方法</div>
+<div class="content">
+使用Toast.setDuration(&lt;時間&gt;);可以定義提示框在多久後消失，單位是毫秒，這裡的時間是指停留的時間，提示框本身有500毫秒的消失動畫是不計算在內的。<br />
+除了使用數字外，我們也提供了預定義的時間。<br />
+Toast.LENGTH_SHORT為短時顯示 2秒.<br />
+Toast.LENGTH_LONG為長時顯示 3.5秒.
+</div>
+<div class="title1">setPosition 位置定義方法</div>
+<div class="content">
+使用Toast.setPosition(&lt;[x,y]&gt;);可以定義位置，中心為[0,0]，向上和向左為-0.1 ~ -1，向下和向右為0.1 ~ 1。<br/>
+例如:座標為[1,1]時，提示框在右下角。[-1,-1]時在左上角，[-1,0]時在左側中間等。<br />
+我們也提前定義了常用的位置：<br />
+Toast.Position.CENTER 屏幕中心;<br />
+Toast.Position.CENTER_BOTTOM 底部居中;<br />
+Toast.Position.CENTER_TOP 頂部居中;<br />
+Toast.Position.CENTER_LEFT = 左側中間;<br />
+Toast.Position.CENTER_RIGHT = 右側中間;<br />
+Toast.Position.LEFT_TOP = 左上角;<br />
+Toast.Position.RIGHT_TOP = 右上角;<br />
+Toast.Position.LEFT_BOTTOM = 左下角;<br />
+Toast.Position.RIGHT_BOTTOM = 右下角;
+</div>
+<div class="title1">setTheme 設定主題方法</div>
+<div class="content">
+使用Toast.setTheme("light/dark");可以設定主題，目前我們提供兩種主題。<br />
+但是可以自定義主題喔，只要在任意使用這個主題的頁面可以讀取的CSS文件或是頁面本身以._vel_toast.&lt;主題名&gt;定義樣式，就可以直接在這個方法中使用喔。
+</div>
+<div class="title1">setStyle 自定義樣式方法</div>
+<div class="content">
+使用Toast.setStyle("&lt;HTML style樣式字串&gt;");可以自行定義樣式，如果是要改變較多的樣式，建議參照上方的說明，以主題的方式定義。
+</div>
+<div class="title1">makeText 創建提示框方法</div>
+<div class="content">
+使用Toast.makeText("&lt;父級容器&gt;","&lt;顯示文本&gt;",&lt;顯示時間&gt;);可以方便的創建一個Toast提示框，此方法可以看作是上方單獨設定的整合，但部份設定依然需要使用單獨的方法定義。
+</div>
+<div class="title1">show 顯示提示框方法</div>
+<div class="content">
+使用Toast.show("&lt;父級容器&gt;","&lt;顯示文本&gt;",&lt;顯示時間&gt;,&lt;[x,y]&gt;,"&lt;HTML style樣式字串&gt;");可以顯示提示框，如果在調用此方法前已經定義過提示框，則可以不用任何參數直接調用顯示。同時也可以將參數都在此處設定並顯示。
+</div>
+
+<div class="title1">示例</div>
+
+<div class="content" style="text-indent: 0em;">
+代碼:
+<pre class="code">
+	$("#showLToast").click(function(){
+		Toast.setTheme('light');
+		Toast.setPosition(Toast.Position.CENTER);
+		Toast.makeText("body","測試Toast提示框",Toast.LENGTH_SHORT);
+		Toast.show();
+	})
+	$("#showDToast").click(function(){
+		Toast.setTheme('dark');
+		Toast.setPosition(Toast.Position.CENTER);
+		Toast.makeText("body","測試Toast提示框",Toast.LENGTH_SHORT);
+		Toast.show();
+	})
+</pre>
+<br />
+<input type="button" id="showLToast" value="顯示白色Toast" />
+<input type="button" id="showDToast" value="顯示暗色Toast" />
+</div>
+</body>
+</html>

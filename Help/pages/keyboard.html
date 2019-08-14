@@ -3,24 +3,25 @@
 <head>
 <meta charset="UTF-8" />
 <title></title>
-<link type="text/css" rel="stylesheet" href="../style/PublicStyle.css?ver=3.2" />
+<link type="text/css" rel="stylesheet" href="../style/PublicStyle.css?ver=3.5.5" />
 <link type="text/css" rel="stylesheet" href="../style/help_content.css?ver=0.1" />
 <script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="../script/velfun.js?ver=3.2"></script>
+<script type="text/javascript" src="../script/velfun.js?ver=3.10.3"></script>
 <script type="text/javascript" src="../script/help.js?ver=0.1"></script>
 <script type="text/javascript" >
 
 </script>
 </head>
 <body>
-<div class="title0">屏幕虛擬鍵盤（軟鍵盤）</div></div>
+<div class="title0">屏幕虛擬鍵盤（軟鍵盤）框架</div></div>
 <div class="title1">簡介</div>
 <div class="content">
-這是一個實驗中的功能，並不及作業系統自帶的屏幕鍵盤好用，因此我們只建議用於不能直接調用屏幕鍵盤的情況(例如全屏互動展示系統等)
+我們建議用於不能直接調用屏幕鍵盤的情況(例如全屏互動展示系統等)<br />
+數字、英文及符號輸入已完善，中文等涉及輸入法的功能處於開發階段。
 </div>
 <div class="title1">使用方法</div>
 <div class="content">
-在要使用軟鍵盤的文本框添加客制屬性inputbox(無中文輸入)或inputmethodbox(有中文輸入)<br />
+在要使用軟鍵盤的文本框添加客制屬性inputbox(無中文輸入)<font style='color:gray;'>或inputmethodbox(有中文輸入，不推薦)</font><br />
 例如:
 <pre class="code">
 &lt;input type="text" inputbox /&gt;
@@ -40,7 +41,7 @@
 <li>zh/en(切換中英文)</li>
 </ul>
 
-此功能屬於智慧型方法，無需輸入JS代碼
+此功能屬於智慧型方法，無需輸入JS代碼，當前接受輸入的控件儲存在 velfun.nowinputbox 屬性中。
 </div>
 <div class="title1">示例</div>
 

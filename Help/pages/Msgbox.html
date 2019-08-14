@@ -13,9 +13,7 @@ $(document).ready(function () {
 	$("#test0").click(function () {
 		$.Msgbox('這是一個消息框！','消息框','MSG_OK',function (b) {
 			if (b) {
-				setTimeout(function () {
-					$.Msgbox('你點擊了<strong>確認</strong>','結果');
-				},500)
+				$.Msgbox('你點擊了<strong>確認</strong>','結果');
 			}
 		})
 	})
@@ -23,13 +21,9 @@ $(document).ready(function () {
 	$("#test1").click(function () {
 		$.Msgbox('這是一個確認框！','確認框','MSG_OK_Cancel',function (b) {
 			if (b) {
-				setTimeout(function () {
-					$.Msgbox('你點擊了<strong>確認</strong>','結果');
-				},500)
+				$.Msgbox('你點擊了<strong>確認</strong>','結果');
 			}else {
-				setTimeout(function () {
-					$.Msgbox('你點擊了<strong>取消</strong>','結果');
-				},500)
+				$.Msgbox('你點擊了<strong>取消</strong>','結果');
 			}
 		})
 	})
@@ -37,13 +31,9 @@ $(document).ready(function () {
 	$("#test2").click(function () {
 		$.Msgbox('這是一個是否選擇框！','是否選擇框','MSG_YES_NO',function (b) {
 			if (b) {
-				setTimeout(function () {
-					$.Msgbox('你點擊了是','結果');
-				},500)
+				$.Msgbox('你點擊了是','結果');
 			}else {
-				setTimeout(function () {
-					$.Msgbox('你點擊了否','結果');
-				},500)
+				$.Msgbox('你點擊了否','結果');
 			}
 		})
 	})
