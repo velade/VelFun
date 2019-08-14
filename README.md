@@ -5,3 +5,4 @@ This is a web front-end development library
 在velfun中定義了包含消息框、客製滑鼠右鍵選單、Json字串到Array數列、判定屬性是否存在、虛擬鍵盤、ul模擬select、變色圖標、隨機數、格式驗證等方便使用的智慧型方法封裝
 並且在持續擴充中。
 
+更多信息歡迎訪問官網：https://www.velhlkj.com
