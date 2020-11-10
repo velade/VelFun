@@ -1,4 +1,5 @@
 # VelFun
+# 此版本以不再维护，请转移至新版本VelFun4 https://github.com/velade/VelFun4
 This is a web front-end development library
 这是一个WEB前端开发类库
 化龍科技類庫分爲2個部分，分別是velfun.js的腳本部分和PublicStyle.css樣式部分，其中樣式部分可以單獨使用，但腳本部分內容依賴樣式，因此不建議單獨使用腳本。
